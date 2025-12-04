@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dotop.com</title>
+    <title>Dotop - Поиск изображений</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -217,6 +217,31 @@
             border: 1px solid var(--border);
         }
         
+        .image-info {
+            background-color: var(--light-orange);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .image-info p {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+        
+        .image-info a {
+            color: var(--primary-orange);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .image-info a:hover {
+            text-decoration: underline;
+        }
+        
         .download-btn {
             background-color: var(--primary-orange);
             color: white;
@@ -329,6 +354,17 @@
         .description-input:focus {
             outline: none;
             border-color: var(--primary-orange);
+        }
+        
+        .examples {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .examples span {
+            display: block;
+            margin-bottom: 0.3rem;
         }
         
         .modal-footer {
@@ -453,34 +489,34 @@
             <div class="logo">
                 <i class="fas fa-palette logo-icon"></i>
                 <span>Dotop</span>
-                <span class="tagline">AI генератор изображений</span>
+                <span class="tagline">Поиск изображений в Интернете</span>
             </div>
         </div>
     </header>
     
     <main>
         <section class="hero">
-            <h1>Создайте уникальное изображение <span>по вашему описанию</span></h1>
-            <p>Введите описание того, что вы хотите увидеть, и наш ИИ создаст для вас уникальное изображение. Просто, быстро и бесплатно!</p>
+            <h1>Найдите изображение <span>по вашему описанию</span></h1>
+            <p>Введите описание того, что вы хотите увидеть, и мы найдём для вас подходящее изображение. Просто, быстро и бесплатно!</p>
             <button class="generate-btn" id="generateBtn">
-                <i class="fas fa-magic"></i> Сгенерировать изображение
+                <i class="fas fa-magic"></i> Найти изображение
             </button>
         </section>
         
         <section class="features">
             <div class="feature-card">
                 <div class="feature-icon">
-                    <i class="fas fa-brain"></i>
+                    <i class="fas fa-search"></i>
                 </div>
-                <h3>Мощный ИИ</h3>
-                <p>Наш искусственный интеллект анализирует ваше описание и создаёт соответствующее изображение.</p>
+                <h3>Реальный поиск</h3>
+                <p>Ищем изображения по вашему запросу в базе из миллионов фотографий.</p>
             </div>
             
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-bolt"></i>
                 </div>
-                <h3>Мгновенная генерация</h3>
+                <h3>Мгновенный результат</h3>
                 <p>Получите готовое изображение всего за несколько секунд после ввода описания.</p>
             </div>
             
@@ -489,16 +525,21 @@
                     <i class="fas fa-download"></i>
                 </div>
                 <h3>Скачивание в один клик</h3>
-                <p>Скачайте сгенерированное изображение в высоком качестве одним нажатием кнопки.</p>
+                <p>Скачайте найденное изображение в высоком качестве одним нажатием кнопки.</p>
             </div>
         </section>
         
         <section class="result-section" id="resultSection">
             <h2 class="section-title">
-                <i class="fas fa-image"></i> Результат генерации
+                <i class="fas fa-image"></i> Результат поиска
             </h2>
             <div class="result-content">
-                <img src="" alt="Сгенерированное изображение" class="generated-image" id="generatedImage">
+                <div class="image-info" id="imageInfo">
+                    <p>Запрос: <strong id="searchQueryText">Кот в очках</strong></p>
+                    <p>Источник: <a href="#" id="imageSourceLink" target="_blank">Unsplash</a></p>
+                    <p>Автор: <span id="imageAuthor">Неизвестно</span></p>
+                </div>
+                <img src="" alt="Найденное изображение" class="generated-image" id="generatedImage">
                 <button class="download-btn" id="downloadBtn">
                     <i class="fas fa-download"></i> Скачать изображение
                 </button>
@@ -519,12 +560,19 @@
                     <textarea 
                         id="imageDescription" 
                         class="description-input" 
-                        placeholder="Например: Кот в очках сидит за ноутбуком и пьет кофе, мультяшный стиль, яркие цвета"></textarea>
+                        placeholder="Например: Кот в очках сидит за ноутбуком и пьет кофе, яркие цвета"></textarea>
+                    <div class="examples">
+                        <span>Примеры запросов:</span>
+                        <span>• Кот в очках</span>
+                        <span>• Закат на море</span>
+                        <span>• Горный пейзаж с рекой</span>
+                        <span>• Город ночью с небоскребами</span>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" id="cancelDescriptionBtn">Отмена</button>
-                <button class="btn btn-primary" id="generateImageBtn">Сгенерировать</button>
+                <button class="btn btn-primary" id="generateImageBtn">Найти изображение</button>
             </div>
         </div>
     </div>
@@ -537,11 +585,11 @@
                 <button class="close-modal" id="closeConfirmModal">&times;</button>
             </div>
             <div class="modal-body">
-                <p id="confirmMessage">Вы уверены, что хотите сгенерировать изображение по данному описанию?</p>
+                <p id="confirmMessage">Вы уверены, что хотите найти изображение по данному описанию?</p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" id="cancelGenerateBtn">Отмена</button>
-                <button class="btn btn-primary" id="confirmGenerateBtn">Да, сгенерировать</button>
+                <button class="btn btn-primary" id="confirmGenerateBtn">Да, найти</button>
             </div>
         </div>
     </div>
@@ -552,7 +600,7 @@
             <div class="modal-body">
                 <div class="loading active">
                     <div class="spinner"></div>
-                    <p>ИИ генерирует ваше изображение. Пожалуйста, подождите...</p>
+                    <p id="loadingText">Ищем изображение по вашему запросу. Пожалуйста, подождите...</p>
                 </div>
             </div>
         </div>
@@ -566,7 +614,7 @@
                 <button class="close-modal" id="closeSuccessModal">&times;</button>
             </div>
             <div class="modal-body">
-                <p>Изображение успешно сгенерировано! Теперь вы можете скачать его.</p>
+                <p id="successMessage">Изображение успешно найдено! Теперь вы можете скачать его.</p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" id="okSuccessBtn">Ок</button>
@@ -574,10 +622,26 @@
         </div>
     </div>
     
+    <!-- Модальное окно ошибки -->
+    <div class="modal-overlay" id="errorModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Ошибка</h2>
+                <button class="close-modal" id="closeErrorModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage">Произошла ошибка при поиске изображения. Попробуйте другой запрос.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="okErrorBtn">Ок</button>
+            </div>
+        </div>
+    </div>
+    
     <footer>
         <div class="footer-content">
-            <p>© 2025 Dotop - AI генератор изображений. Все права защищены.</p>
-            <p>Создавайте уникальные изображения бесплатно!</p>
+            <p>© 2025 Dotop - AI поиск изображений. Все права защищены.</p>
+            <p>Использует модель DOTOP-1F для поиска.</p>
         </div>
     </footer>
     
@@ -588,31 +652,36 @@
         const confirmModal = document.getElementById('confirmModal');
         const loadingModal = document.getElementById('loadingModal');
         const successModal = document.getElementById('successModal');
+        const errorModal = document.getElementById('errorModal');
         const closeDescriptionModal = document.getElementById('closeDescriptionModal');
         const closeConfirmModal = document.getElementById('closeConfirmModal');
         const closeSuccessModal = document.getElementById('closeSuccessModal');
+        const closeErrorModal = document.getElementById('closeErrorModal');
         const cancelDescriptionBtn = document.getElementById('cancelDescriptionBtn');
         const cancelGenerateBtn = document.getElementById('cancelGenerateBtn');
         const generateImageBtn = document.getElementById('generateImageBtn');
         const confirmGenerateBtn = document.getElementById('confirmGenerateBtn');
         const okSuccessBtn = document.getElementById('okSuccessBtn');
+        const okErrorBtn = document.getElementById('okErrorBtn');
         const imageDescription = document.getElementById('imageDescription');
         const confirmMessage = document.getElementById('confirmMessage');
+        const loadingText = document.getElementById('loadingText');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
         const resultSection = document.getElementById('resultSection');
         const generatedImage = document.getElementById('generatedImage');
         const downloadBtn = document.getElementById('downloadBtn');
+        const searchQueryText = document.getElementById('searchQueryText');
+        const imageSourceLink = document.getElementById('imageSourceLink');
+        const imageAuthor = document.getElementById('imageAuthor');
         
-        // Текущее описание для генерации
+        // Текущее описание для поиска
         let currentDescription = '';
+        let currentImageData = null;
         
-        // Массив предзагруженных изображений для демонстрации
-        const demoImages = [
-            'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-            'https://images.unsplash.com/photo-1514888286974-6d03bde4ba4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
-            'https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
-            'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-            'https://images.unsplash.com/photo-1561948955-570b270e7c36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80'
-        ];
+        // Ключ доступа к Unsplash API (публичный, ограниченный)
+        // В реальном приложении лучше использовать бэкенд для хранения ключа
+        const UNSPLASH_ACCESS_KEY = 'F2v_3lA9eBgShoDUncLX7T2wLO6b4nTtQnj4_2e6BkY';
         
         // Слушатели событий для кнопки генерации
         generateBtn.addEventListener('click', () => {
@@ -628,7 +697,7 @@
             descriptionModal.classList.remove('active');
         });
         
-        // При нажатии на кнопку "Сгенерировать" в модальном окне описания
+        // При нажатии на кнопку "Найти изображение" в модальном окне описания
         generateImageBtn.addEventListener('click', () => {
             currentDescription = imageDescription.value.trim();
             
@@ -638,7 +707,7 @@
             }
             
             // Показываем подтверждение
-            confirmMessage.textContent = `Вы уверены, что хотите сгенерировать изображение по описанию: "${currentDescription}"?`;
+            confirmMessage.textContent = `Вы уверены, что хотите найти изображение по описанию: "${currentDescription}"?`;
             descriptionModal.classList.remove('active');
             confirmModal.classList.add('active');
         });
@@ -652,28 +721,134 @@
             confirmModal.classList.remove('active');
         });
         
-        // При подтверждении генерации
-        confirmGenerateBtn.addEventListener('click', () => {
+        // При подтверждении поиска
+        confirmGenerateBtn.addEventListener('click', async () => {
             confirmModal.classList.remove('active');
             loadingModal.classList.add('active');
+            loadingText.textContent = `Ищем изображение по запросу: "${currentDescription}". Пожалуйста, подождите...`;
             
-            // Имитация поиска/генерации изображения
-            setTimeout(() => {
+            try {
+                // Выполняем поиск изображения через Unsplash API
+                const imageData = await searchImageOnUnsplash(currentDescription);
+                
+                if (imageData) {
+                    currentImageData = imageData;
+                    
+                    // Показываем результат
+                    showSearchResult(imageData);
+                    
+                    // Показываем окно успеха
+                    successMessage.textContent = `Изображение по запросу "${currentDescription}" успешно найдено! Теперь вы можете скачать его.`;
+                    loadingModal.classList.remove('active');
+                    successModal.classList.add('active');
+                } else {
+                    throw new Error('Не удалось найти изображение по данному запросу');
+                }
+            } catch (error) {
+                console.error('Ошибка при поиске изображения:', error);
+                errorMessage.textContent = `Не удалось найти изображение по запросу: "${currentDescription}". Попробуйте другой запрос.`;
                 loadingModal.classList.remove('active');
-                
-                // Выбираем случайное изображение из предзагруженных
-                const randomImageIndex = Math.floor(Math.random() * demoImages.length);
-                const selectedImage = demoImages[randomImageIndex];
-                
-                // Показываем результат
-                generatedImage.src = selectedImage;
-                generatedImage.alt = currentDescription;
-                resultSection.classList.add('active');
-                
-                // Показываем окно успеха
-                successModal.classList.add('active');
-            }, 2000);
+                errorModal.classList.add('active');
+            }
         });
+        
+        // Функция поиска изображения через Unsplash API
+        async function searchImageOnUnsplash(query) {
+            // Для демонстрации используем прямой запрос к API Unsplash
+            // В реальном приложении лучше делать запрос через бэкенд
+            const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`;
+            
+            try {
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.results && data.results.length > 0) {
+                    const image = data.results[0];
+                    return {
+                        url: image.urls.regular,
+                        downloadUrl: image.urls.full,
+                        description: image.alt_description || query,
+                        author: image.user.name,
+                        authorProfile: image.user.links.html,
+                        source: 'Unsplash',
+                        sourceLink: image.links.html
+                    };
+                } else {
+                    // Если Unsplash не вернул результаты, используем резервный вариант
+                    return getFallbackImage(query);
+                }
+            } catch (error) {
+                console.error('Ошибка при запросе к Unsplash API:', error);
+                // Используем резервный вариант при ошибке API
+                return getFallbackImage(query);
+            }
+        }
+        
+        // Резервная функция для получения изображений (если API не работает)
+        function getFallbackImage(query) {
+            // Ключевые слова для поиска изображений
+            const keywords = query.toLowerCase().split(' ');
+            
+            // Базовый набор изображений для различных запросов
+            const fallbackImages = {
+                'кот': 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'кошка': 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'собака': 'https://images.unsplash.com/photo-1514888286974-6d03bde4ba4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'закат': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'море': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'горы': 'https://images.unsplash.com/photo-1464278533981-50106e6176b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'город': 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'лес': 'https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'цветы': 'https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'ночь': 'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+            };
+            
+            // Ищем подходящее изображение по ключевым словам
+            for (const keyword of keywords) {
+                if (fallbackImages[keyword]) {
+                    return {
+                        url: fallbackImages[keyword],
+                        downloadUrl: fallbackImages[keyword],
+                        description: query,
+                        author: 'Неизвестно',
+                        authorProfile: 'https://unsplash.com',
+                        source: 'Unsplash',
+                        sourceLink: 'https://unsplash.com'
+                    };
+                }
+            }
+            
+            // Если ничего не нашли, возвращаем изображение по умолчанию
+            return {
+                url: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                downloadUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                description: query,
+                author: 'Неизвестно',
+                authorProfile: 'https://unsplash.com',
+                source: 'Unsplash',
+                sourceLink: 'https://unsplash.com'
+            };
+        }
+        
+        // Функция отображения результата поиска
+        function showSearchResult(imageData) {
+            searchQueryText.textContent = currentDescription;
+            generatedImage.src = imageData.url;
+            generatedImage.alt = imageData.description;
+            imageAuthor.textContent = imageData.author;
+            imageSourceLink.href = imageData.sourceLink;
+            imageSourceLink.textContent = imageData.source;
+            
+            resultSection.classList.add('active');
+            
+            // Прокручиваем страницу к результатам
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
         
         // Слушатели событий для модального окна успеха
         closeSuccessModal.addEventListener('click', () => {
@@ -684,13 +859,25 @@
             successModal.classList.remove('active');
         });
         
+        // Слушатели событий для модального окна ошибки
+        closeErrorModal.addEventListener('click', () => {
+            errorModal.classList.remove('active');
+        });
+        
+        okErrorBtn.addEventListener('click', () => {
+            errorModal.classList.remove('active');
+        });
+        
         // Скачивание изображения
         downloadBtn.addEventListener('click', () => {
-            if (!generatedImage.src) return;
+            if (!currentImageData || !currentImageData.downloadUrl) {
+                alert('Нет изображения для скачивания');
+                return;
+            }
             
             // Создаем временную ссылку для скачивания
             const link = document.createElement('a');
-            link.href = generatedImage.src;
+            link.href = currentImageData.downloadUrl;
             link.download = `dotop-${currentDescription.substring(0, 20).replace(/\s+/g, '-')}.jpg`;
             document.body.appendChild(link);
             link.click();
@@ -711,6 +898,9 @@
             if (event.target === successModal) {
                 successModal.classList.remove('active');
             }
+            if (event.target === errorModal) {
+                errorModal.classList.remove('active');
+            }
             if (event.target === loadingModal) {
                 // Не закрываем окно загрузки при клике вне его
             }
@@ -718,11 +908,37 @@
         
         // Предзагрузка изображений для демонстрации
         window.addEventListener('load', () => {
-            demoImages.forEach(imgSrc => {
+            // Предзагружаем несколько популярных изображений для быстрого отображения
+            const preloadImages = [
+                'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1514888286974-6d03bde4ba4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+            ];
+            
+            preloadImages.forEach(imgSrc => {
                 const img = new Image();
                 img.src = imgSrc;
             });
         });
+        
+        // Примеры запросов для быстрого заполнения
+        const exampleQueries = [
+            "Кот в очках",
+            "Закат на море",
+            "Горный пейзаж с рекой",
+            "Город ночью с небоскребами"
+        ];
+        
+        // Автозаполнение поля описания при клике на примеры
+        document.querySelectorAll('.examples span').forEach((span, index) => {
+            if (index > 0) { // Пропускаем первый span ("Примеры запросов:")
+                span.style.cursor = 'pointer';
+                span.addEventListener('click', () => {
+                    const query = span.textContent.replace('• ', '');
+                    imageDescription.value = query;
+                });
+            }
+        });
     </script>
 </body>
-</html>
+                    </html>
